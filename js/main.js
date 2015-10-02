@@ -15,6 +15,7 @@ function deg2rad(angle) {
 var loader = new OBJMTLLoader()
 
 function render() {
+  if(window.thing2) window.thing2.rotation.z += Math.PI / 80;
   Animation.update()
   // Rendering, updating the world
   cssRenderer.render(cssScene, camera);
@@ -99,10 +100,11 @@ loader.load('unicorn/unicorn.obj', 'unicorn/unicorn.obj.mtl', function(mesh) {
   mesh.traverse(function(object) {
     if(object instanceof THREE.Mesh) {
       object.material.color.setHex(0xef509d);
+      object.material.wireframe = true;
     }
   })
-  mesh.rotation.set(-Math.PI/2, Math.PI/10, -Math.PI/2) //Math.PI/4)
-  mesh.position.set(1130, -5, -900)
+  mesh.rotation.set(-Math.PI/2, 0, -Math.PI/2) //Math.PI/4)
+  mesh.position.set(1050, 0, -900)
   mesh.scale.set(4, 4, 4)
   World.add(mesh)
   window.thing2 = mesh
